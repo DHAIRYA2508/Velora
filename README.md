@@ -6,7 +6,7 @@ A luxury restaurant ordering platform with JWT authentication, role-based access
 
 ## Brand
 
-**Velora** — Fine Dining · London · Est. 2018
+**Velora** — Fine Dining · India · Est. 2018
 
 ---
 
