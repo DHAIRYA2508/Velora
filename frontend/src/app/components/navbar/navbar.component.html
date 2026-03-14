@@ -1,0 +1,88 @@
+<nav [class]="scrolled
+  ? 'fixed top-0 left-0 right-0 z-50 bg-velora-dark/95 backdrop-blur-sm shadow-luxury transition-all duration-500'
+  : 'fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-500'">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo -->
+      <a routerLink="/" class="flex items-center gap-3 group">
+        <div class="flex flex-col items-start">
+          <span class="font-display text-2xl font-bold text-white tracking-wide leading-none">VELORA</span>
+          <span class="text-gold-400 text-xs tracking-widest3 uppercase font-body font-light leading-none mt-0.5">Fine Dining</span>
+        </div>
+        <div class="w-px h-8 bg-gold-500/50 mx-1"></div>
+        <div class="flex flex-col gap-0.5">
+          <div class="w-4 h-px bg-gold-500"></div>
+          <div class="w-3 h-px bg-gold-500/60"></div>
+          <div class="w-4 h-px bg-gold-500"></div>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a routerLink="/" routerLinkActive="text-gold-400" [routerLinkActiveOptions]="{exact:true}"
+           class="text-white/80 hover:text-gold-400 text-xs uppercase tracking-widest font-body font-semibold transition-colors duration-300">Home</a>
+        <a routerLink="/menu" routerLinkActive="text-gold-400"
+           class="text-white/80 hover:text-gold-400 text-xs uppercase tracking-widest font-body font-semibold transition-colors duration-300">Menu</a>
+        <a *ngIf="auth.isAdmin" routerLink="/admin" routerLinkActive="text-gold-400"
+           class="text-white/80 hover:text-gold-400 text-xs uppercase tracking-widest font-body font-semibold transition-colors duration-300">Dashboard</a>
+
+        <div class="w-px h-5 bg-white/20"></div>
+
+        <!-- Cart -->
+        <a *ngIf="auth.isLoggedIn && !auth.isAdmin" routerLink="/cart" class="relative group">
+          <svg class="w-5 h-5 text-white/80 group-hover:text-gold-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span *ngIf="cartCount > 0"
+            class="absolute -top-2 -right-2 bg-gold-500 text-velora-dark text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold font-body">
+            {{ cartCount }}
+          </span>
+        </a>
+
+        <!-- User info + logout -->
+        <div *ngIf="auth.isLoggedIn" class="flex items-center gap-4">
+          <div class="text-right">
+            <p class="text-white text-xs font-semibold font-body leading-none">{{ auth.currentUser?.username }}</p>
+            <p class="text-gold-400 text-xs font-body leading-none mt-0.5 uppercase tracking-wider">{{ auth.currentUser?.role }}</p>
+          </div>
+          <button (click)="auth.logout()" class="text-white/50 hover:text-gold-400 transition-colors duration-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Not logged in -->
+        <div *ngIf="!auth.isLoggedIn" class="flex items-center gap-4">
+          <a routerLink="/login" class="text-white/80 hover:text-gold-400 text-xs uppercase tracking-widest font-body font-semibold transition-colors duration-300">Sign In</a>
+          <a routerLink="/register" class="btn-gold text-xs py-2.5 px-6">Reserve</a>
+        </div>
+      </div>
+
+      <!-- Mobile burger -->
+      <button (click)="menuOpen = !menuOpen" class="md:hidden text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path *ngIf="!menuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+          <path *ngIf="menuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div *ngIf="menuOpen" class="md:hidden bg-velora-dark border-t border-white/10 py-6 space-y-4">
+      <a routerLink="/" (click)="menuOpen=false" class="block text-white/80 text-xs uppercase tracking-widest font-body font-semibold py-2">Home</a>
+      <a routerLink="/menu" (click)="menuOpen=false" class="block text-white/80 text-xs uppercase tracking-widest font-body font-semibold py-2">Menu</a>
+      <a *ngIf="auth.isAdmin" routerLink="/admin" (click)="menuOpen=false" class="block text-white/80 text-xs uppercase tracking-widest font-body font-semibold py-2">Dashboard</a>
+      <a *ngIf="auth.isLoggedIn && !auth.isAdmin" routerLink="/cart" (click)="menuOpen=false" class="block text-gold-400 text-xs uppercase tracking-widest font-body font-semibold py-2">Cart ({{cartCount}})</a>
+      <div *ngIf="auth.isLoggedIn" class="pt-4 border-t border-white/10">
+        <p class="text-white/40 text-xs mb-3 font-body">Signed in as {{ auth.currentUser?.username }}</p>
+        <button (click)="auth.logout()" class="text-gold-400 text-xs uppercase tracking-widest font-body font-semibold">Sign Out</button>
+      </div>
+      <div *ngIf="!auth.isLoggedIn" class="pt-4 border-t border-white/10 flex gap-4">
+        <a routerLink="/login" (click)="menuOpen=false" class="text-white/80 text-xs uppercase tracking-widest font-body font-semibold">Sign In</a>
+        <a routerLink="/register" (click)="menuOpen=false" class="text-gold-400 text-xs uppercase tracking-widest font-body font-semibold">Register</a>
+      </div>
+    </div>
+  </div>
+</nav>

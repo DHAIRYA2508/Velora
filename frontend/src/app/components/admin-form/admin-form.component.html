@@ -1,0 +1,61 @@
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+  <div class="flex items-center gap-3 mb-6">
+    <div class="w-8 h-8 rounded-lg flex items-center justify-center" [class.bg-blue-100]="editItem" [class.bg-amber-100]="!editItem">
+      <svg class="w-4 h-4" [class.text-blue-600]="editItem" [class.text-amber-600]="!editItem" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path *ngIf="!editItem" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        <path *ngIf="editItem" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+      </svg>
+    </div>
+    <h2 class="text-base font-bold text-gray-900">{{ editItem ? 'Edit Menu Item' : 'Add New Item' }}</h2>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+    <div>
+      <label class="form-label">Item Name *</label>
+      <input type="text" formControlName="name" placeholder="e.g. Margherita Pizza" class="form-input"
+        [class.border-red-400]="hasError('name','required') || hasError('name','minlength')">
+      <p *ngIf="hasError('name','required')" class="text-red-500 text-xs mt-1">Name is required.</p>
+    </div>
+
+    <div>
+      <label class="form-label">Description *</label>
+      <textarea formControlName="description" rows="3" placeholder="Describe the dish..." class="form-input resize-none"
+        [class.border-red-400]="hasError('description','required')"></textarea>
+      <p *ngIf="hasError('description','required')" class="text-red-500 text-xs mt-1">Description is required.</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <div>
+        <label class="form-label">Price ($) *</label>
+        <input type="number" formControlName="price" placeholder="0.00" step="0.01" min="0" class="form-input"
+          [class.border-red-400]="hasError('price','required')">
+        <p *ngIf="hasError('price','required')" class="text-red-500 text-xs mt-1">Price is required.</p>
+      </div>
+      <div>
+        <label class="form-label">Category *</label>
+        <select formControlName="category" class="form-input" [class.border-red-400]="hasError('category','required')">
+          <option value="">Select...</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+        <p *ngIf="hasError('category','required')" class="text-red-500 text-xs mt-1">Category is required.</p>
+      </div>
+    </div>
+
+    <div>
+      <label class="form-label">Image URL</label>
+      <input type="url" formControlName="imageUrl" placeholder="https://example.com/photo.jpg" class="form-input">
+      <p class="text-gray-400 text-xs mt-1">Leave blank to use default image.</p>
+    </div>
+
+    <div class="flex gap-3 pt-1">
+      <button type="submit"
+        class="flex-1 bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2.5 px-4 rounded-xl transition-colors duration-200 text-sm">
+        {{ editItem ? 'Update Item' : 'Add Item' }}
+      </button>
+      <button *ngIf="editItem" type="button" (click)="onCancel()"
+        class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2.5 px-4 rounded-xl transition-colors duration-200 text-sm">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

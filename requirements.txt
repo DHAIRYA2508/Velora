@@ -1,0 +1,90 @@
+# ============================================================
+# RESTAURANT ORDERING SYSTEM — REQUIREMENTS
+# ============================================================
+# IMPORTANT CHANGE: Now uses SQLite instead of SQL Server.
+# NO database installation needed. The database file is
+# created automatically in the backend folder on first run.
+# ============================================================
+
+
+# ------------------------------------------------------------
+# SECTION 1: SYSTEM TOOLS (install manually)
+# ------------------------------------------------------------
+
+# 1. Node.js (includes npm)
+#    Version : 18.x or higher (LTS recommended)
+#    Download: https://nodejs.org/en/download
+#    Verify  : node --version   →  v18.x.x
+#              npm --version    →  9.x.x or higher
+
+# 2. .NET 8 SDK
+#    Version : 8.0 or higher
+#    Download: https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+#    Verify  : dotnet --version  →  8.0.x
+
+# 3. SQL Server — NOT REQUIRED
+#    The project now uses SQLite, which requires zero installation.
+#    A file called "restaurant.db" is created automatically in
+#    the backend folder when you run "dotnet run" for the first time.
+
+
+# ------------------------------------------------------------
+# SECTION 2: BACKEND — NuGet Packages (.NET)
+# ------------------------------------------------------------
+# Install with: cd backend && dotnet restore
+#
+# Package                                        Version
+# -------------------------------------------------------
+# Microsoft.AspNetCore.OpenApi                   8.0.0
+# Microsoft.EntityFrameworkCore                  8.0.0
+# Microsoft.EntityFrameworkCore.Sqlite           8.0.0   ← SQLite (no server needed)
+# Microsoft.EntityFrameworkCore.Tools            8.0.0
+# Microsoft.EntityFrameworkCore.Design           8.0.0
+# Swashbuckle.AspNetCore                         6.5.0
+
+
+# ------------------------------------------------------------
+# SECTION 3: FRONTEND — npm Packages (Angular)
+# ------------------------------------------------------------
+# Install with: cd frontend && npm install
+#
+# Runtime dependencies:
+#   @angular/animations, @angular/common, @angular/compiler,
+#   @angular/core, @angular/forms, @angular/platform-browser,
+#   @angular/platform-browser-dynamic, @angular/router  → ^17.0.0
+#   rxjs → ~7.8.0    tslib → ^2.3.0    zone.js → ~0.14.0
+#
+# Dev dependencies:
+#   @angular-devkit/build-angular, @angular/cli, @angular/compiler-cli → ^17.0.0
+#   tailwindcss → ^3.3.5    postcss → ^8.4.31    autoprefixer → ^10.4.16
+#   typescript → ~5.2.2
+
+
+# ------------------------------------------------------------
+# SECTION 4: INSTALL & RUN (copy-paste ready)
+# ------------------------------------------------------------
+
+# Step 1 — Install Angular CLI globally (one-time)
+#   npm install -g @angular/cli@17
+
+# Step 2 — Install backend packages
+#   cd backend
+#   dotnet restore
+
+# Step 3 — Install frontend packages
+#   cd frontend
+#   npm install
+
+# Step 4 — Start backend (Terminal 1)
+#   cd backend
+#   dotnet run
+#   → Creates restaurant.db automatically
+#   → Seeds 16 menu items automatically
+
+# Step 5 — Start frontend (Terminal 2)
+#   cd frontend
+#   npm start
+
+# App:     http://localhost:4200
+# API:     http://localhost:5000
+# Swagger: http://localhost:5000/swagger

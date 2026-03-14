@@ -1,0 +1,9 @@
+# Backend 
+backend/velora.db 
+backend/bin/ 
+backend/obj/ 
+backend/Migrations/ 
+# Frontend 
+frontend/node_modules/ 
+frontend/dist/ 
+frontend/.angular/ 

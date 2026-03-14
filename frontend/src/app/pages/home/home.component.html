@@ -1,0 +1,154 @@
+<!-- HERO -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+  <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&h=1000&fit=crop&auto=format&q=90"
+    class="absolute inset-0 w-full h-full object-cover" alt="Velora Restaurant">
+  <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+
+  <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+    <p class="section-label text-gold-400 mb-6 tracking-widest3">Est. 2018 · India</p>
+    <h1 class="font-display text-6xl md:text-8xl font-bold text-white leading-none mb-6 tracking-tight">
+      Where Every<br><span class="italic text-gold-300">Meal</span> Becomes<br>a Memory
+    </h1>
+    <div class="flex items-center justify-center gap-4 mb-10">
+      <div class="h-px w-16 bg-gold-500"></div>
+      <p class="text-white/70 font-body font-light text-sm tracking-widest uppercase">Fine Dining · Private Events · Wine Cellar</p>
+      <div class="h-px w-16 bg-gold-500"></div>
+    </div>
+    <div class="flex items-center justify-center gap-4 flex-wrap">
+      <a routerLink="/menu" class="btn-gold">Explore Menu</a>
+      <a *ngIf="!auth.isLoggedIn" routerLink="/register" class="btn-outline-gold text-white border-white/50 hover:bg-white hover:text-velora-dark">Reserve a Table</a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+    <p class="text-white/40 text-xs uppercase tracking-widest font-body">Discover</p>
+    <div class="w-px h-8 bg-gradient-to-b from-white/40 to-transparent"></div>
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<section class="bg-velora-dark py-6">
+  <div class="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-center gap-12 text-center">
+    <div class="flex items-center gap-3">
+      <span class="text-gold-400 font-display text-3xl font-bold">14</span>
+      <span class="text-white/50 font-body text-xs uppercase tracking-widest">Years of<br>Excellence</span>
+    </div>
+    <div class="w-px h-10 bg-white/10 hidden md:block"></div>
+    <div class="flex items-center gap-3">
+      <span class="text-gold-400 font-display text-3xl font-bold">3</span>
+      <span class="text-white/50 font-body text-xs uppercase tracking-widest">Michelin<br>Stars</span>
+    </div>
+    <div class="w-px h-10 bg-white/10 hidden md:block"></div>
+    <div class="flex items-center gap-3">
+      <span class="text-gold-400 font-display text-3xl font-bold">400+</span>
+      <span class="text-white/50 font-body text-xs uppercase tracking-widest">Curated<br>Wines</span>
+    </div>
+    <div class="w-px h-10 bg-white/10 hidden md:block"></div>
+    <div class="flex items-center gap-3">
+      <span class="text-gold-400 font-display text-3xl font-bold">48</span>
+      <span class="text-white/50 font-body text-xs uppercase tracking-widest">Seats of<br>Intimacy</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="py-28 px-6 bg-velora-ivory">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-20">
+      <p class="section-label mb-4">The Velora Experience</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-velora-dark">An Ode to the<br><em>Extraordinary</em></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-12">
+      <div *ngFor="let e of experiences" class="text-center group">
+        <div class="w-16 h-16 border border-gold-300 flex items-center justify-center mx-auto mb-6 group-hover:bg-gold-500 group-hover:border-gold-500 transition-all duration-500">
+          <span class="text-gold-500 group-hover:text-white text-xl transition-colors duration-500">{{ e.icon }}</span>
+        </div>
+        <h3 class="font-display text-xl font-bold text-velora-dark mb-4">{{ e.title }}</h3>
+        <p class="font-body text-gray-500 text-sm leading-relaxed">{{ e.desc }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE DISH -->
+<section class="grid lg:grid-cols-2 min-h-[60vh]">
+  <div class="relative">
+    <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=900&h=700&fit=crop&auto=format&q=90"
+      class="w-full h-full object-cover" alt="Wagyu Beef" style="min-height:400px">
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black/20"></div>
+  </div>
+  <div class="bg-velora-dark flex items-center px-12 py-20">
+    <div>
+      <p class="section-label text-gold-400 mb-6">Signature Creation</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+        A5 Wagyu<br><em class="text-gold-300">Tenderloin</em>
+      </h2>
+      <div class="h-px w-12 bg-gold-500 mb-8"></div>
+      <p class="font-body text-white/60 text-sm leading-relaxed mb-8 max-w-sm">
+        The crown jewel of our menu. Japanese A5 Wagyu, seared over binchotan charcoal, served with black truffle butter, pomme purée, and our legendary Périgueux sauce.
+      </p>
+      <div class="flex items-baseline gap-2 mb-10">
+        <span class="font-body text-white/40 text-xs uppercase tracking-widest">From</span>
+        <span class="font-display text-3xl text-gold-400 font-bold">₹899</span>
+      </div>
+      <a routerLink="/menu" class="btn-gold">View Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- CHEF'S QUOTE -->
+<section class="bg-velora-cream py-24 px-6 text-center">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-gold-400 text-4xl mb-8 font-display">"</div>
+    <blockquote class="font-display text-2xl md:text-3xl italic text-velora-dark font-bold leading-relaxed mb-8">
+      Cooking is not merely sustenance. It is the language through which we express love, culture, and the pursuit of perfection.
+    </blockquote>
+    <p class="font-body text-gray-500 text-xs uppercase tracking-widest">— Chef Alexandre Moreau, Executive Chef</p>
+  </div>
+</section>
+
+<!-- GALLERY MOSAIC -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-0">
+  <div class="relative overflow-hidden aspect-square group">
+    <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=500&h=500&fit=crop&auto=format" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300"></div>
+  </div>
+  <div class="relative overflow-hidden aspect-square group">
+    <img src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=500&h=500&fit=crop&auto=format" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300"></div>
+  </div>
+  <div class="relative overflow-hidden aspect-square group">
+    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&h=500&fit=crop&auto=format" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300"></div>
+  </div>
+  <div class="relative overflow-hidden aspect-square group">
+    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500&h=500&fit=crop&auto=format" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-velora-dark py-28 px-6 text-center">
+  <p class="section-label text-gold-400 mb-6">Begin Your Journey</p>
+  <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-8">Ready to Experience<br><em class="text-gold-300">Velora?</em></h2>
+  <div class="flex items-center justify-center gap-4 flex-wrap">
+    <a routerLink="/menu" class="btn-gold">Explore the Menu</a>
+    <a *ngIf="!auth.isLoggedIn" routerLink="/register" class="btn-outline-gold text-white border-gold-500">Create Account</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-black py-12 px-6">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <div>
+      <p class="font-display text-white text-xl font-bold">VELORA</p>
+      <p class="font-body text-white/30 text-xs uppercase tracking-widest mt-1">Fine Dining · London</p>
+    </div>
+    <p class="font-body text-white/30 text-xs">© 2024 Velora Restaurant. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="#" class="text-white/30 hover:text-gold-400 font-body text-xs uppercase tracking-widest transition-colors">Instagram</a>
+      <a href="#" class="text-white/30 hover:text-gold-400 font-body text-xs uppercase tracking-widest transition-colors">Reservations</a>
+    </div>
+  </div>
+</footer>

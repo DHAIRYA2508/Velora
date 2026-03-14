@@ -1,0 +1,41 @@
+<div class="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100 hover:border-amber-200 transition-all duration-200">
+  <!-- Image -->
+  <img [src]="cartItem.menuItem.imageUrl"
+    [alt]="cartItem.menuItem.name"
+    class="w-20 h-20 object-cover rounded-xl flex-shrink-0 shadow-sm"
+    loading="lazy"
+    (error)="$any($event.target).src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=200&h=200&fit=crop&auto=format'">
+
+  <!-- Details -->
+  <div class="flex-1 min-w-0">
+    <h4 class="font-semibold text-gray-900 truncate text-sm">{{ cartItem.menuItem.name }}</h4>
+    <p class="text-amber-600 font-bold text-sm mt-0.5">${{ cartItem.menuItem.price.toFixed(2) }}</p>
+    <p class="text-gray-400 text-xs mt-0.5">{{ cartItem.menuItem.category }}</p>
+  </div>
+
+  <!-- Quantity Controls -->
+  <div class="flex items-center bg-gray-100 rounded-xl overflow-hidden">
+    <button (click)="decreaseQuantity()"
+      class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-red-100 hover:text-red-500 transition-colors duration-150 font-bold text-lg">
+      −
+    </button>
+    <span class="w-8 text-center font-bold text-gray-900 text-sm">{{ cartItem.quantity }}</span>
+    <button (click)="increaseQuantity()"
+      class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-green-100 hover:text-green-600 transition-colors duration-150 font-bold text-lg">
+      +
+    </button>
+  </div>
+
+  <!-- Subtotal -->
+  <div class="text-right min-w-[72px]">
+    <p class="font-bold text-gray-900 text-sm">${{ getSubtotal().toFixed(2) }}</p>
+  </div>
+
+  <!-- Remove -->
+  <button (click)="removeItem()" title="Remove item"
+    class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all duration-200 flex-shrink-0">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+</div>
