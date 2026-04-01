@@ -2,7 +2,7 @@ services:
   - type: web
     name: velora-backend
     env: docker
-    dockerfilePath: ./backend/Dockerfile
+    rootDir: backend
     plan: free
     envVars:
       - key: PORT
