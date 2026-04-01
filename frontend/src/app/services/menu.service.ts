@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { MenuItem } from '../models/menu-item.model';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
-  private api = '/api/menu';
+  private api = `${environment.apiUrl}/api/menu`;
   constructor(private http: HttpClient) {}
   getAll(): Observable<MenuItem[]> { return this.http.get<MenuItem[]>(this.api); }
   getById(id: number): Observable<MenuItem> { return this.http.get<MenuItem>(`${this.api}/${id}`); }

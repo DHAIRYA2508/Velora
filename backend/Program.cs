@@ -8,6 +8,10 @@ using RestaurantAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Dynamic port binding for Render deployment
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
@@ -48,8 +52,9 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMenuService, MenuService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 
+var frontendUrl = Environment.GetEnvironmentVariable("FrontendUrl") ?? "http://localhost:4200";
 builder.Services.AddCors(o => o.AddPolicy("AllowAngular",
-    p => p.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod()));
+    p => p.WithOrigins(frontendUrl).AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
 
 var app = builder.Build();
 

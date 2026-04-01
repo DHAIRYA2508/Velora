@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: velora-backend
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    plan: free
+    envVars:
+      - key: PORT
+        value: "8080"
+      - key: FrontendUrl
+        value: "https://velora-frontend.vercel.app" # To be replaced with actual frontend URL later
